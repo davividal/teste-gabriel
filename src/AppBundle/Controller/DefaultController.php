@@ -13,7 +13,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        var_dump()
+        var_dump('teste');
 
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', array(
