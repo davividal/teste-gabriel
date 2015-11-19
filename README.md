@@ -9,7 +9,6 @@ For details on how to download and get started with Symfony, see the
 
 Current Build Status
 --------------------
-[![Build Status](https://scrutinizer-ci.com/g/Rentcars/teste-gabriel/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Rentcars/teste-gabriel/build-status/master)
 
 
 What's inside?
