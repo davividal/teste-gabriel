@@ -34,7 +34,7 @@ class DefaultController extends Controller
      */
     public function teste2Action(Request $request)
     {
-        var_dump();
+        var_dump()
         return new Response('teste2');
     }
 }
