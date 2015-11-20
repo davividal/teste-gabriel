@@ -25,6 +25,7 @@ class DefaultController extends Controller
      */
     public function testeAction(Request $request)
     {
+
         return new Response('teste');
     }
 }
