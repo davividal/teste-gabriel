@@ -28,4 +28,13 @@ class DefaultController extends Controller
         var_dump();
         return new Response('teste');
     }
+
+    /**
+     * @Route("/teste2", name="teste2")
+     */
+    public function teste2Action(Request $request)
+    {
+        var_dump();
+        return new Response('teste2');
+    }
 }
