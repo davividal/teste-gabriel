@@ -32,17 +32,8 @@ class DefaultController extends Controller
     /**
      * @Route("/teste2", name="teste2")
      */
-    public function teste2Action(Request $request) {
-
-        if (1 == 2)
-            echo 'codigo fora dos padroes';
-
-        goto a;
-        a:
-
-        while(true) {
-            break;
-        }
+    public function teste2Action(Request $request)
+    {
 
         return new Response('teste2');
     }
