@@ -26,6 +26,7 @@ build_failure_conditions:
     - 'issues.label("coding-style").new.exists'
 
     - 'issues.label("coding-style").new.count > 5'
+    - 'issues.label("security").new.count > 0'
     - 'issues.severity(>= MAJOR).new.exists'
 
 tools:
