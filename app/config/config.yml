@@ -78,3 +78,8 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+bugsnag:
+    api_key: b5d153252c6f0bd69112f59b9072259c
+    enabled_stages: [dev, prod, staging]
+    notify_stages: [development, staging, production]

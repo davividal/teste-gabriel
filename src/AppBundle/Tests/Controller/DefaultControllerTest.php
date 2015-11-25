@@ -3,11 +3,13 @@
 namespace AppBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\Security\Acl\Exception\Exception;
 
 class DefaultControllerTest extends WebTestCase
 {
     public function testIndex()
     {
+
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/');

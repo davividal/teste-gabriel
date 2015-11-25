@@ -1,3 +1,7 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+evolution7_bugsnag_bundle:
+    resource: "@BugsnagBundle/Resources/config/routing.yml"
+    prefix:   /bugsnagtest
