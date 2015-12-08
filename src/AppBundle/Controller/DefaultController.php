@@ -15,6 +15,9 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $bugsnagClient = new \Bugsnag_Client('5f0a95172721e57524748c87f620d8ea');
+        $bugsnagClient->notifyException(new Exception());
+        throw new Exception('teste');
 
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', array(
