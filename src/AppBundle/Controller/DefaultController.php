@@ -18,6 +18,7 @@ class DefaultController extends Controller
         $bugsnagCli = new \Bugsnag_Client('9e189108c4ab434fce86a34bc4c02ca1');
         $bugsnagCli->notifyException(new \Exception());
 
+
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
