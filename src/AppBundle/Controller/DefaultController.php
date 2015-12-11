@@ -17,7 +17,7 @@ class DefaultController extends Controller
     {
         $bugsnagCli = new \Bugsnag_Client('9e189108c4ab434fce86a34bc4c02ca1');
         $bugsnagCli->notifyException(new \Exception());
-
+        throw new \Exception('teste');
 
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', array(
