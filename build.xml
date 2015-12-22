@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="rentcars" default="main">
+
+    <!-- Properties -->
+    <resolvepath propertyName="project.path" file="." />
+    <resolvepath propertyName="build.dir" file="./build" />
+    <property name="release" value="" />
+    <property name="release.path" value="" />
+
+    <!-- Project files -->
+    <fileset dir="./" id="projectFiles">
+        <include name="**" />
+        <exclude name="build.xml" />
+        <exclude name="build/**" />
+        <exclude name="vendor/**" />
+    </fileset>
+
+
+    <!-- The main task -->
+    <target name="main" depends="git">
+        <phingcall target="build" />
+        <echo msg="build done." />
+    </target>
+
+
+    <!-- Version control -->
+    <target name="git" depends="git.update, git.get.release">
+        <if>
+            <not><isset property="release" /></not>
+            <then>
+                <phingcall target="git.get.release" />
+            </then>
+        </if>
+    </target>
+
+
+    <!--    Get latest version -->
+    <target name="git.get.release">
+        <echo msg="getting the release..." />
+        <exec
+                outputProperty="release"
+                command="git describe --tags `git rev-list --tags --max-count=1`"
+                dir="${project.path}"/>
+        <exec
+                command="git reset --hard ${release}"
+                dir="${project.path}"/>
+
+        <property name="release.path" value="${build.dir}/${release}" override="yes" />
+        <echo msg="build release path: ${release.path}" />
+        <if>
+            <not><available file='${release.path}' type='dir' /></not>
+            <then>
+                <mkdir dir="${release.path}"/>
+            </then>
+        </if>
+
+        <exec command="git archive ${release} | tar -x -C ${release.path}" />
+
+    </target>
+
+
+    <!--    Update local clone -->
+    <target name="git.update">
+        <echo msg="updating local release..." />
+        <exec
+                command="git reset --hard HEAD"
+                dir="${project.path}"/>
+
+        <exec
+                command="git pull --tags"
+                dir="${project.path}"/>
+    </target>
+
+
+    <!-- Test -->
+
+    <!-- Packaging -->
+    <target name="build">
+        <!-- Create TARBALL archive -->
+        <echo msg="creating release ${release} build archive..." />
+        <tar
+                destfile="${build.dir}/${phing.project.name}-${release}.tar.gz"
+                compression="gzip">
+            <fileset dir="${release.path}" id="archive.files">
+                <include name="**"/>
+                <exclude name="applications/**/config/database.php" />
+                <exclude name="build.xml" />
+                <exclude name="build/**" />
+                <exclude name="vendor/**" />
+            </fileset>
+        </tar>
+
+        <echo msg="archive: ${build.dir}/${phing.project.name}-${release}.tar.gz" />
+
+        <exec
+                command="aws s3 cp ${build.dir}/ s3://projects-artifacts/${phing.project.name}/ --include='${phing.project.name}-${release}.tar.gz' --recursive"
+                dir="${release.path}"/>
+
+        <delete dir="${release.path}" />
+
+    </target>
+
+
+</project>
