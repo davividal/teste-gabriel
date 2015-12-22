@@ -15,7 +15,6 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-	$a = 1;
         $bugsnagCli = new \Bugsnag_Client('9e189108c4ab434fce86a34bc4c02ca1');
         $bugsnagCli->notifyException(new \Exception());
 
