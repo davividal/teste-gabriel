@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="teste-gabriel" default="main">
+<project name="testegabriel" default="main">
 
     <!-- Properties -->
     <resolvepath propertyName="project.path" file="." />
