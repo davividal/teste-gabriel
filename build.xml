@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="rentcars" default="main">
+<project name="teste-gabriel" default="main">
 
     <!-- Properties -->
     <resolvepath propertyName="project.path" file="." />
